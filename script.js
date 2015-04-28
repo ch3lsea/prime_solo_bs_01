@@ -2,50 +2,37 @@
 function searchCallback(results) {
 	$('#searchResults').empty();
 	for (var i = 0; i < 9; i++) {
-		var currentRow;
 		var platformName = "";
 		for (var j = 0; j < results[i].platforms.length; j++) {
 			platformName += " - " + results[i].platforms[j].name;
 		}
-		if(i % 3 == 0) {
-			currentRow = i;
-			$('#searchResults').append(
-				'<div id="searchRow' + currentRow + '"class="row">' +
-					'<div id="result' + (i+1) + '" class="col-md-4 well">' +
-						'<div id="name" ><p class="lead">Game Title:</p> ' + results[i].name + '</div>' +
-						'<div id="image"><img class="hidden-sm hidden-xs" src="' + results[i].image.thumb_url + '"/></div>' +
-						'<div id="description" class="bob"><h5>Description:</h5> ' + results[i].deck + '</div>' +
-						'<div id="platforms" class="bob"><h5>Supported Platforms:</h5> ' + platformName + '</div>' +
-						'<button class="btn btn-sm btn-success removeBtn">Remove</button>' +
-					'<div>' +
-				'</div>'
-			).hide().fadeIn('slow');
-		} else {
-			$('#searchResults').children('#searchRow'+currentRow).append(
-				'<div id="result' + (i+1) + '" class="col-md-4 well">' +
-					'<div id="name"><p class="lead">Game Title:</p> ' + results[i].name + '</div>' +
-					'<div id="image"><img class="hidden-sm hidden-xs" src="' + results[i].image.thumb_url + '"/></div>' +
-					'<div id="description" class="bob"><h5>Description:</h5> ' + results[i].deck + '</div>' +
-					'<div id="platforms" class="bob"><h5>Supported Platforms:</h5> ' + platformName + '</div>' +
-					'<button class="btn btn-sm btn-success removeBtn">Remove</button>' +
-				'<div>'
-			).hide().fadeIn('slow');
-		}
+		$('#searchResults').append(
+			'<div class="col-md-4 well text-center pagination-centered resultHeight">' +
+				'<div id="name" >Game Title: <p class="lead">' + results[i].name + '</p></div>' +
+				'<div id="image"><img class="hidden-sm hidden-xs" src="' + results[i].image.small_url + '"/></div>' +
+				'<div id="description" class="bob"><h5>Description:</h5> ' + results[i].deck + '</div>' +
+				'<div id="platforms" class="bob"><h5>Supported Platforms:</h5> ' + platformName + '</div>' +
+				'<button class="btn btn-sm btn-success removeBtn">Remove</button>' +
+				'<button class="btn btn-sm btn-primary expandBtn">Expand</button>' +
+			'<div>').hide().fadeIn('slow');
 	}
+	$('.appendP').append('<p>Click on the expand button to see the description and supported platforms</p>');
 }
 
 var apikey = "d40a650b5d8cc7c495d91736f95dee0b8993d809";
+var userInput = "";
 
 $(document).ready(function() {
 	$('.btn').on('click', function(){
 		$('#searchResults').empty();
-		search('batman');
+		userInput = $('#search').val();
+		search(userInput);
 	});
-	$('#searchResults').on('click', ".col-md-4", function(){
-		if($(this).children('.bob').first().css('display') == 'none') {
-			$(this).children('.bob').show();
+	$('#searchResults').on('click', ".expandBtn", function(){
+		if($(this).siblings('.bob').css('display') != 'none') {
+			$(this).siblings('.bob').hide();
 		} else {
-			$(this).children('.bob').hide();
+			$(this).siblings('.bob').show();
 		}
 	});
 	$('#searchResults').on('click', '.removeBtn', function(){
@@ -67,6 +54,7 @@ function search(query){
 	    },
 	    success: function(data) {
 	        searchCallback(data.results);
+	        console.log(data.results);
 	    }
 	});
 

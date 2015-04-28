@@ -5,8 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Prime Solo BS 01</title>
 		<meta name="Prime Solo BS 01" content="Webpage">
-		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+		<link href="bootstrap.slate.min.css" rel="stylesheet">
 		<link href="style.css" rel="stylesheet">
 	</head>
 	<body>
@@ -16,14 +15,15 @@
 				<h5>This is a site will let you search for video game titles for Batman</h5>
 			</div>
 		</div>
-		<div class="container">
-			<div class="col-md-2 col-md-offset-5">
+		<div class="container text-center">
+			<div class="row">
 				<h3>Search</h3>
-				<button class="btn btn-lg btn-warning">Click Me!</button>
+				<input type="textbox" id="search">
 			</div>
-			<div class="col-md-8 col-md-offset-3">
-				<p>Click on the title or picture to see the description and supported platforms</p>
+			<div class="row">
+				<button class="btn btn-sm btn-info searchBtn">Submit</button>
 			</div>
+			<div class="row appendP"></div>
 		</div>
 		<div class="container"  id="searchResults">
 		</div>
