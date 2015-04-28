@@ -1,0 +1,41 @@
+body {
+	background-color: #736B02;
+	color: #fff;
+}
+
+.jumbotron {
+	background-color: #F29F05;
+}
+
+h4 {
+	display: inline-block;
+}
+
+h3 {
+	margin-left: 12%;
+}
+
+.btn:hover{
+	background-color: #FF0000;
+}
+
+#name {
+	font-size: 18px;
+}
+
+.row {
+	border-bottom: 3px solid black;
+}
+
+#searchResults{
+	vertical-align: top;
+}
+
+.well{
+	background-color: #554073;
+	color: #fff;
+}
+
+.bob {
+	display: none;
+}
